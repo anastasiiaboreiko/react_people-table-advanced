@@ -64,6 +64,8 @@ export const PeopleFilters = ({}) => {
               sex: null,
               query: null,
               centuries: null,
+              sort: null,
+              order: null,
             }),
           }}
         >

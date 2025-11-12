@@ -31,11 +31,17 @@ function peopleFilteringAndSorting(
 
   if (query) {
     list = list.filter(person => {
-      const filteringFilds =
-        `${person.name} ${person.fatherName} ${person.motherName}`.toLowerCase();
+      const filteringFields = [
+        person.name,
+        person.fatherName,
+        person.motherName,
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
       const normalozedQuery = query.toLowerCase();
 
-      return filteringFilds.includes(normalozedQuery);
+      return filteringFields.includes(normalozedQuery);
     });
   }
 
@@ -132,7 +138,7 @@ export const PeoplePage = () => {
                 </p>
               )}
 
-              {!loading && !errorMessage && visiblePeople.length === 0 && (
+              {!loading && visiblePeople.length === 0 && people.length > 0 && (
                 <p>There are no people matching the current search criteria</p>
               )}
 
